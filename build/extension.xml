@@ -17,15 +17,15 @@
 //////////////////////////////////////////////////////////////////////////////////////-->
 
 <extension xmlns="http://ns.adobe.com/air/extension/3.1">
-  <id>com.example.HelloANENative</id>
+  <id>com.pamakids.IFlytek</id>
   <versionNumber>1</versionNumber>
   <platforms>
 
     <platform name="Android-ARM"> 
         <applicationDeployment> 
-            <nativeLibrary>libHelloANENative.jar</nativeLibrary> 
-            <initializer>com.example.HelloANENative.HelloExtension</initializer> 
-            <finalizer>com.example.HelloANENative.HelloExtension</finalizer> 
+            <nativeLibrary>libIFlytek.jar</nativeLibrary> 
+            <initializer>com.pamakids.IFlytek.IFlytek</initializer> 
+            <finalizer>com.pamakids.IFlytek.IFlytek</finalizer> 
         </applicationDeployment> 
     </platform> 
     

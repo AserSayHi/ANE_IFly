@@ -9,7 +9,7 @@ import com.adobe.fre.FREExtension;
  */
 class IFlytek implements FREExtension {
 
-    public static final String TAG = "UMSocial";
+    public static final String TAG = "IFlytek";
 
     @Override
     public void initialize() {
@@ -18,7 +18,7 @@ class IFlytek implements FREExtension {
 
     @Override
     public FREContext createContext(String s) {
-        return new IFlytekContext() ;
+        return new IFlytekContext();
     }
 
     @Override
