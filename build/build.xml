@@ -83,7 +83,7 @@
         <!-- <unzip src="../android/libs/libammsdk.jar" dest="../android/temp/zip"/> -->
         <!-- <unzip src="../android/libs/httpmime-4.1.3.jar" dest="../android/temp/zip"/> -->
         <copydir src="../android/temp/zip" dest="../android/temp/classes"/>
-		<copy todir="../temp/android/">
+		<copy todir="../temp/android/assets/">
             <fileset dir="../android/${name}/assets/"/>
         </copy>
 		

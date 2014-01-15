@@ -18,6 +18,9 @@ import com.iflytek.speech.ISpeechModule;
 import com.iflytek.speech.LexiconListener;
 
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -53,7 +56,7 @@ public class IFlytekContext extends FREContext{
                 mRecognizer.setParameter(SpeechConstant.ENGINE_TYPE, "local");
 
                 //缓存语法文件
-                mLocalGrammar = readFile("call.bnf", "utf-8");
+                mLocalGrammar = readFile("assets/call.bnf", "utf-8");
                 String grammarContent = new String( mLocalGrammar );
 
                 Log.d(TAG, "语法文件：" + grammarContent);
@@ -171,7 +174,8 @@ public class IFlytekContext extends FREContext{
         byte []buf = null;
         String grammar = "";
         try {
-            InputStream in = this.getActivity().getApplicationContext().getAssets().open(file);
+            InputStream in = new BufferedInputStream(new FileInputStream(file));
+            //InputStream in = this.getActivity().getApplicationContext().getAssets().open(file);
             len  = in.available();
             buf = new byte[len];
             in.read(buf, 0, len);
