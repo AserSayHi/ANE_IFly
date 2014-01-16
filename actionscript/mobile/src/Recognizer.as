@@ -13,18 +13,7 @@ package
 		
 		public function Recognizer()
 		{
-		}
-		
-		internal function set context(_context:ExtensionContext):void
-		{
-			if(!_context)
-			{
-				trace("Error: _context不存在， 所在位置：Recognizer 第21行！");
-				return;
-			}
-			extension = _context;
-			extension.addEventListener( "start", statusHandler );
-			extension.addEventListener( "result", statusHandler );
+			extension = IFlyTek.context;
 		}
 		
 		protected function statusHandler(event:Event):void
@@ -36,12 +25,7 @@ package
 				if( _resultHandler != null )
 					_resultHandler( event );
 			}
-		}		
-		
-		public function startRecog( startCallback:Function=null ):void
-		{
-			extension.call( "start" );
-		}
+		}	
 		
 		/**
 		 * 结果回调
@@ -52,6 +36,53 @@ package
 			_resultHandler = func;
 		}
 		private var _resultHandler:Function;
-		
+		/**
+		 * 词典更新
+		 * @param title 词库名称，格式为"<titleName>"
+		 * @param words 多个关键词以"_"连接
+		 */		
+		public function updateDictionary(title:String, words:String):void
+		{
+			if(extension)
+				extension.call( "lexcion", words );
+		}
+		/**
+		 * 语法构建
+		 * @param urlFile 语法文件名称（包含路径）
+		 */
+		public function initGrammar(urlFile:String):void
+		{	
+			if(extension)
+				extension.call( "initGrammar", urlFile );
+		}
+		/**
+		 * 开始识别
+		 */		
+		public function startRecog():void
+		{
+			if(extension)
+				extension.call( "startRecog" );
+		}
+		/**
+		 * 停止识别，等待结果返回
+		 */		
+		public function stopRecog():void
+		{
+			if(extension)
+				extension.call( "stopRecog" );
+		}
+		/**
+		 * 取消识别
+		 */		
+		public function cancle():void
+		{
+			if(extension)
+				extension.call( "cancle" );
+		}
+		internal function initRecog():void
+		{
+			if(extension)
+				extension.call( "initRecog" );
+		}
 	}
 }

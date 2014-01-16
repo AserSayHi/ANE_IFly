@@ -1,12 +1,11 @@
 package com.pamakids.IFlytek;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
-import com.adobe.fre.FREContext;
-import com.adobe.fre.FREFunction;
-import com.adobe.fre.FREObject;
+import com.adobe.fre.*;
 import com.iflytek.speech.SpeechRecognizer;
 import com.iflytek.speech.ErrorCode;
 import com.iflytek.speech.RecognizerListener;
@@ -16,11 +15,8 @@ import com.iflytek.speech.SpeechConstant;
 import com.iflytek.speech.GrammarListener;
 import com.iflytek.speech.ISpeechModule;
 import com.iflytek.speech.LexiconListener;
+import org.apache.http.util.EncodingUtils;
 
-
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,50 +30,45 @@ public class IFlytekContext extends FREContext{
 
     public SpeechRecognizer mRecognizer;
     private String mLocalGrammar = null;
-    //private String appid = null;
 
+    //初始化识别控件
     void initmRecognizer() {
-
         Log.d(TAG, "initRecognizer!");
+        Context context = this.getActivity().getApplicationContext();
+        mRecognizer = new SpeechRecognizer(context, mInitListener);
+    }
 
-        Context context;
-        //初始化识别控件
-        try{
-            Log.d(TAG, "try to init context!");
-            context= this.getActivity().getApplicationContext();
-            if(context != null)
-            {
-                mRecognizer = new SpeechRecognizer(context, mInitListener);
-                if( mRecognizer != null )
-                    Log.d(TAG, "mRecognizer initialized!");
-                //语法构建参数
-                mRecognizer.setParameter(SpeechRecognizer.GRAMMAR_ENCODEING,"utf-8");
-                mRecognizer.setParameter("local_scn", "call");
-                mRecognizer.setParameter(SpeechConstant.ENGINE_TYPE, "local");
+    //语法构建
+    void initGrammar(String file) {
+        //缓存语法文件
+        Log.d(TAG, file);
+        mLocalGrammar = readFile(file, "utf-8");
+        String grammarContent = new String( mLocalGrammar );
+        Log.d(TAG, "语法内容 grammarContent ：" + grammarContent);
 
-                //缓存语法文件
-                mLocalGrammar = readFile("assets/call.bnf", "utf-8");
-                String grammarContent = new String( mLocalGrammar );
+        //语法构建参数
+        mRecognizer.setParameter(SpeechRecognizer.GRAMMAR_ENCODEING, "utf-8");
+        mRecognizer.setParameter("local_scn", "call");
+        mRecognizer.setParameter(SpeechConstant.ENGINE_TYPE, "local");
+        //本地语法构建
+        mRecognizer.setParameter(SpeechRecognizer.GRAMMAR_ID, "call");
 
-                Log.d(TAG, "语法文件：" + grammarContent);
+        //语法构建
+        int ret = mRecognizer.buildGrammar("abnf", grammarContent, grammarListener);
+        if(ret != ErrorCode.SUCCESS)
+        Log.d(TAG, "Error：语法构建失败！ret = " + ret);
+    }
 
-                //语法构建
-                int ret = mRecognizer.buildGrammar("abnf", grammarContent, grammarListener);
-                if(ret != ErrorCode.SUCCESS)
-                    Log.d(TAG, "Error：语法构建失败！ret = " + ret);
-                else
-                    Log.d(TAG, "Error：语法构建成功！");
-
-                //本地语法构建
-                mRecognizer.setParameter(SpeechConstant.ENGINE_TYPE, "local");
-                mRecognizer.setParameter(SpeechRecognizer.GRAMMAR_LIST, "call");
-                //更新词典
-                //mRecognizer.updateLexicon("<contact>", "�ź���\n���\n����\n", lexiconListener);
-            }
-        }catch (Error e)
+    //更新词典
+    void lexicon(String title,String words){
+        String[] arr = words.split("_");
+        String content = "";
+        for(String s:arr)
         {
-            e.printStackTrace();
+            content += (s + "\n");
         }
+        //更新词典
+        mRecognizer.updateLexicon(title, content, lexiconListener);
     }
 
     private GrammarListener grammarListener = new GrammarListener.Stub() {
@@ -158,10 +149,12 @@ public class IFlytekContext extends FREContext{
     @Override
     public Map<String, FREFunction> getFunctions() {
         Map<String, FREFunction> functions = new HashMap<String, FREFunction>();
-        functions.put( initRecog.TAG, new initRecog() );
-        functions.put( startRecog.TAG, new startRecog() );
-        functions.put( stopRecog.TAG, new stopRecog() );
-        functions.put( cancleRecog.TAG, new cancleRecog() );
+        functions.put( initRecog.TAG, new initRecog() );        //初始化识别控件
+        functions.put( initGrammar.TAG, new initGrammar() );    //构建语法，指明语法文件路径
+        functions.put( lexcion.TAG, new lexcion() );            //更新词典
+        functions.put( startRecog.TAG, new startRecog() );      //开始识别
+        functions.put( stopRecog.TAG, new stopRecog() );        //识别结束
+        functions.put( cancleRecog.TAG, new cancleRecog() );    //取消识别
         return functions;
     }
 
@@ -174,14 +167,16 @@ public class IFlytekContext extends FREContext{
         byte []buf = null;
         String grammar = "";
         try {
-            InputStream in = new BufferedInputStream(new FileInputStream(file));
-            //InputStream in = this.getActivity().getApplicationContext().getAssets().open(file);
+            Log.d(TAG, "尝试读取文件！");
+            Log.d(TAG, "file = " + file);
+            InputStream in = this.getActivity().getAssets().open(file);
             len  = in.available();
             buf = new byte[len];
             in.read(buf, 0, len);
-
-            grammar = new String(buf,code);
+            grammar = EncodingUtils.getString(buf, "UTF-8");
+            in.close();
         } catch (Exception e) {
+            Log.d(TAG, "readFile Error ：" + e.getMessage() );
             e.printStackTrace();
         }
         return grammar;
@@ -191,7 +186,7 @@ public class IFlytekContext extends FREContext{
 
 class startRecog implements FREFunction {
 
-    public static final String TAG = "start";
+    public static final String TAG = "startRecog";
 
     @Override
     public FREObject call(FREContext freContext, FREObject[] freObjects) {
@@ -205,7 +200,7 @@ class startRecog implements FREFunction {
 
 class stopRecog implements FREFunction {
 
-    public static final String TAG = "stop";
+    public static final String TAG = "stopRecog";
 
     @Override
     public FREObject call(FREContext freContext, FREObject[] freObjects) {
@@ -229,13 +224,49 @@ class  cancleRecog implements FREFunction {
 
 class initRecog implements FREFunction {
 
-    public static final String TAG = "init";
+    public static final String TAG = "initRecog";
 
     @Override
     public FREObject call(FREContext freContext, FREObject[] freObjects) {
         Log.d(TAG, "initmRecognizer!");
         IFlytekContext context = (IFlytekContext) freContext;
         context.initmRecognizer();
+        return null;
+    }
+}
+
+class initGrammar implements FREFunction {
+
+    public static final String TAG = "initGrammar";
+
+    @Override
+    public FREObject call(FREContext freContext, FREObject[] freObjects) {
+        Log.d(TAG, "initGrammar!");
+        IFlytekContext context = (IFlytekContext) freContext;
+        FREObject object = freObjects[0];
+        try {
+            context.initGrammar(object.getAsString());
+        } catch (FRETypeMismatchException e) {
+            e.printStackTrace();
+        } catch (FREInvalidObjectException e) {
+            e.printStackTrace();
+        } catch (FREWrongThreadException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+}
+
+class lexcion implements FREFunction{
+
+    public static final String TAG = "lexcion";
+
+    @Override
+    public FREObject call(FREContext freContext, FREObject[] freObjects) {
+        IFlytekContext context = (IFlytekContext) freContext;
+        FREObject title = freObjects[0];
+        FREObject words = freObjects[1];
+        context.lexicon(title.toString(), words.toString());
         return null;
     }
 }

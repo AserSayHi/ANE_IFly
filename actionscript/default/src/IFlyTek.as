@@ -7,11 +7,11 @@ package
 		
 		private static var _instance:IFlyTek;
 		
-		private static var context:ExtensionContext;
+		internal static var context:ExtensionContext;
 		
 		private static const EXTENSION_ID:String = "com.pamakids.IFlytek";
 		
-		public static var APPID:String = "appid=52b7d6b1";
+		private static var APPID:String = "appid=52b7d6b1";
 		
 		public static function get instance():IFlyTek
 		{
@@ -20,9 +20,7 @@ package
 				_instance=new IFlyTek();
 				context = ExtensionContext.createExtensionContext(EXTENSION_ID, APPID);
 				if(!context)
-					trace("ERROR - Extension context is null. Please check if extension.xml is setup correctly.");
-				else
-					context.call( "init" );
+					trace("ERROR - Extension context is null. ");
 			}
 			return _instance;
 		}
@@ -39,7 +37,7 @@ package
 			if(!recog)
 			{
 				recog = new Recognizer();
-				recog.context = context;
+				recog.initRecog();
 			}
 			return recog;
 		}
@@ -53,7 +51,6 @@ package
 			if( synth )
 			{
 				synth = new Synthesizer();
-				synth.context = context;
 			}
 			return synth;
 		}
