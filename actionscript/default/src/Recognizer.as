@@ -1,6 +1,7 @@
 package
 {
 	import flash.events.Event;
+	import flash.events.StatusEvent;
 	import flash.external.ExtensionContext;
 
 	/**
@@ -13,7 +14,6 @@ package
 		
 		public function Recognizer()
 		{
-			extension = IFlyTek.context;
 		}
 		
 		protected function statusHandler(event:Event):void
@@ -79,10 +79,17 @@ package
 			if(extension)
 				extension.call( "cancle" );
 		}
+		
+		
+		private var initCallback:Function;
 		internal function initRecog():void
 		{
+			extension = IFlyTek.context;
 			if(extension)
 				extension.call( "initRecog" );
+		}
+		private function statusListener(e:StatusEvent):void
+		{
 		}
 	}
 }

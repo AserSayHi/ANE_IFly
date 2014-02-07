@@ -68,10 +68,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="IFlytek.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="IFlytek.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytek.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="36" selection-start="459" selection-end="459" vertical-scroll-proportion="0.7080745" vertical-offset="0" max-vertical-offset="608">
+            <state line="9" column="39" selection-start="212" selection-end="212" vertical-scroll-proportion="0.0" vertical-offset="163" max-vertical-offset="646">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IFlytekContext.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="83" column="54" selection-start="2715" selection-end="2715" vertical-scroll-proportion="0.21532091" vertical-offset="1074" max-vertical-offset="5111">
+              <folding>
+                <element signature="e#2788#3304#0" expanded="true" />
+                <element signature="e#3297#3298#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IFlytekEventType.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekEventType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="18" selection-start="193" selection-end="193" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
               <folding />
             </state>
           </provider>
@@ -93,6 +116,7 @@
         <option value="$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytek.java" />
         <option value="$PROJECT_DIR$/assets/call.bnf" />
         <option value="$PROJECT_DIR$/../../../../android/Test/src/com/example/Test/MyActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekEventType.java" />
         <option value="$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java" />
       </list>
     </option>
@@ -130,7 +154,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -169,6 +192,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -505,7 +529,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="54" y="-8" width="1320" height="784" extended-state="7" />
+    <frame x="54" y="-8" width="1320" height="784" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -560,14 +584,50 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytek.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="13" selection-start="374" selection-end="374" vertical-scroll-proportion="0.0" vertical-offset="342" max-vertical-offset="608">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="81" column="0" selection-start="2510" selection-end="2510" vertical-scroll-proportion="0.0" vertical-offset="1539" max-vertical-offset="5605">
+          <folding>
+            <element signature="e#2788#3304#0" expanded="true" />
+            <element signature="e#3297#3298#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytek.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="0" selection-start="213" selection-end="213" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="23" selection-start="1766" selection-end="1766" vertical-scroll-proportion="0.0" vertical-offset="1064" max-vertical-offset="5339">
+          <folding>
+            <element signature="e#2788#3304#0" expanded="true" />
+            <element signature="e#3297#3298#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="40" column="38" selection-start="1228" selection-end="1228" vertical-scroll-proportion="0.0" vertical-offset="760" max-vertical-offset="5263">
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2790#3123#0" expanded="true" />
-            <element signature="e#3116#3117#0" expanded="true" />
-            <element signature="e#4865#4886#0" expanded="true" />
+            <element signature="e#2788#3304#0" expanded="true" />
+            <element signature="e#3297#3298#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -576,10 +636,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="53" column="33" selection-start="1714" selection-end="1714" vertical-scroll-proportion="0.0" vertical-offset="1007" max-vertical-offset="5225">
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2790#3123#0" expanded="true" />
-            <element signature="e#3116#3117#0" expanded="true" />
-            <element signature="e#4865#4886#0" expanded="true" />
+            <element signature="e#2788#3304#0" expanded="true" />
+            <element signature="e#3297#3298#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -588,10 +646,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="64" column="22" selection-start="2127" selection-end="2127" vertical-scroll-proportion="0.0" vertical-offset="1216" max-vertical-offset="4617">
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2790#3123#0" expanded="true" />
-            <element signature="e#3116#3117#0" expanded="true" />
-            <element signature="e#4865#4886#0" expanded="true" />
+            <element signature="e#2788#3304#0" expanded="true" />
+            <element signature="e#3297#3298#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -600,10 +656,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="60" column="40" selection-start="1926" selection-end="1934" vertical-scroll-proportion="0.0" vertical-offset="1140" max-vertical-offset="4617">
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2790#3123#0" expanded="true" />
-            <element signature="e#3116#3117#0" expanded="true" />
-            <element signature="e#4865#4886#0" expanded="true" />
+            <element signature="e#2788#3304#0" expanded="true" />
+            <element signature="e#3297#3298#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -612,10 +666,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="174" column="28" selection-start="5624" selection-end="5624" vertical-scroll-proportion="0.0" vertical-offset="3146" max-vertical-offset="4807">
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2790#3123#0" expanded="true" />
-            <element signature="e#3116#3117#0" expanded="true" />
-            <element signature="e#4865#4886#0" expanded="true" />
+            <element signature="e#2788#3304#0" expanded="true" />
+            <element signature="e#3297#3298#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -624,10 +676,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="186" column="22" selection-start="6184" selection-end="6184" vertical-scroll-proportion="0.0" vertical-offset="456" max-vertical-offset="4636">
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2790#3123#0" expanded="true" />
-            <element signature="e#3116#3117#0" expanded="true" />
-            <element signature="e#4865#4886#0" expanded="true" />
+            <element signature="e#2788#3304#0" expanded="true" />
+            <element signature="e#3297#3298#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -636,10 +686,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="173" column="26" selection-start="5595" selection-end="5595" vertical-scroll-proportion="0.0" vertical-offset="3287" max-vertical-offset="4636">
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2790#3123#0" expanded="true" />
-            <element signature="e#3116#3117#0" expanded="true" />
-            <element signature="e#4865#4886#0" expanded="true" />
+            <element signature="e#2788#3304#0" expanded="true" />
+            <element signature="e#3297#3298#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -648,10 +696,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="118" column="0" selection-start="3953" selection-end="3953" vertical-scroll-proportion="0.0" vertical-offset="2242" max-vertical-offset="4256">
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2790#3123#0" expanded="true" />
-            <element signature="e#3116#3117#0" expanded="true" />
-            <element signature="e#4865#4886#0" expanded="true" />
+            <element signature="e#2788#3304#0" expanded="true" />
+            <element signature="e#3297#3298#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -665,10 +711,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="173" column="81" selection-start="5568" selection-end="5577" vertical-scroll-proportion="0.0" vertical-offset="2822" max-vertical-offset="4617">
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2790#3123#0" expanded="true" />
-            <element signature="e#3116#3117#0" expanded="true" />
-            <element signature="e#4865#4886#0" expanded="true" />
+            <element signature="e#2788#3304#0" expanded="true" />
+            <element signature="e#3297#3298#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -682,10 +726,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="33" column="32" selection-start="984" selection-end="984" vertical-scroll-proportion="0.0" vertical-offset="380" max-vertical-offset="4199">
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2790#3123#0" expanded="true" />
-            <element signature="e#3116#3117#0" expanded="true" />
-            <element signature="e#4865#4886#0" expanded="true" />
+            <element signature="e#2788#3304#0" expanded="true" />
+            <element signature="e#3297#3298#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -699,10 +741,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="56" selection-start="620" selection-end="620" vertical-scroll-proportion="0.0" vertical-offset="456" max-vertical-offset="646">
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2790#3123#0" expanded="true" />
-            <element signature="e#3116#3117#0" expanded="true" />
-            <element signature="e#4865#4886#0" expanded="true" />
+            <element signature="e#2788#3304#0" expanded="true" />
+            <element signature="e#3297#3298#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -716,10 +756,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="56" selection-start="620" selection-end="620" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2790#3123#0" expanded="true" />
-            <element signature="e#3116#3117#0" expanded="true" />
-            <element signature="e#4865#4886#0" expanded="true" />
+            <element signature="e#2788#3304#0" expanded="true" />
+            <element signature="e#3297#3298#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -733,10 +771,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="56" selection-start="620" selection-end="620" vertical-scroll-proportion="0.0" vertical-offset="456" max-vertical-offset="646">
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2790#3123#0" expanded="true" />
-            <element signature="e#3116#3117#0" expanded="true" />
-            <element signature="e#4865#4886#0" expanded="true" />
+            <element signature="e#2788#3304#0" expanded="true" />
+            <element signature="e#3297#3298#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -750,10 +786,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="56" selection-start="620" selection-end="620" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2790#3123#0" expanded="true" />
-            <element signature="e#3116#3117#0" expanded="true" />
-            <element signature="e#4865#4886#0" expanded="true" />
+            <element signature="e#2788#3304#0" expanded="true" />
+            <element signature="e#3297#3298#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -767,10 +801,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="56" selection-start="620" selection-end="620" vertical-scroll-proportion="0.0" vertical-offset="456" max-vertical-offset="646">
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2790#3123#0" expanded="true" />
-            <element signature="e#3116#3117#0" expanded="true" />
-            <element signature="e#4865#4886#0" expanded="true" />
+            <element signature="e#2788#3304#0" expanded="true" />
+            <element signature="e#3297#3298#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -784,10 +816,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="51" selection-start="601" selection-end="615" vertical-scroll-proportion="0.0" vertical-offset="456" max-vertical-offset="646">
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2790#3123#0" expanded="true" />
-            <element signature="e#3116#3117#0" expanded="true" />
-            <element signature="e#4865#4886#0" expanded="true" />
+            <element signature="e#2788#3304#0" expanded="true" />
+            <element signature="e#3297#3298#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -822,22 +852,29 @@
         <state line="9" column="41" selection-start="452" selection-end="452" vertical-scroll-proportion="0.34157303" vertical-offset="0" max-vertical-offset="855" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
+    <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekEventType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="164" column="5" selection-start="5359" selection-end="5359" vertical-scroll-proportion="0.44927537" vertical-offset="2785" max-vertical-offset="5396">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2790#3123#0" expanded="true" />
-            <element signature="e#3116#3117#0" expanded="true" />
-            <element signature="e#4865#4886#0" expanded="true" />
-          </folding>
+        <state line="7" column="18" selection-start="193" selection-end="193" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytek.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="36" selection-start="459" selection-end="459" vertical-scroll-proportion="0.7080745" vertical-offset="0" max-vertical-offset="608">
-          <folding />
+        <state line="9" column="39" selection-start="212" selection-end="212" vertical-scroll-proportion="0.0" vertical-offset="163" max-vertical-offset="646">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="83" column="54" selection-start="2715" selection-end="2715" vertical-scroll-proportion="0.21532091" vertical-offset="1074" max-vertical-offset="5111">
+          <folding>
+            <element signature="e#2788#3304#0" expanded="true" />
+            <element signature="e#3297#3298#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

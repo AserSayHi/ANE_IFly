@@ -34,7 +34,7 @@
 
         <delete dir="../temp/ios/build/"/>
     </target>
-
+	
     <!-- iOS Simulator -->
     <target name="ios-simulator" description="Build iOS Simulator Library">
         <mkdir dir="../temp/ios-simulator/build/"/>

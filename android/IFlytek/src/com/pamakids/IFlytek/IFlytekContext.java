@@ -50,7 +50,7 @@ public class IFlytekContext extends FREContext{
         Log.d(TAG, file);
         mLocalGrammar = readFile(file, "utf-8");
         String grammarContent = new String( mLocalGrammar );
-        //Log.d(TAG, "语法内容 grammarContent ：" + grammarContent);
+        Log.d(TAG, "语法内容 grammarContent ：" + grammarContent);
 
         //语法构建参数
         mRecognizer.setParameter(SpeechRecognizer.GRAMMAR_ENCODEING, "utf-8");
@@ -91,8 +91,10 @@ public class IFlytekContext extends FREContext{
         public void onInit(ISpeechModule iSpeechModule, int code) {
             if (code == ErrorCode.SUCCESS) {
                 Log.d(TAG, "mRecognizer initialized!");
+                dispatchStatusEventAsync(IFlytekEventType.INITRECOG_SUCCESS, "");
             }else{
                 Log.d(TAG, "mRecognizer 初始化失败，错误码："+Integer.toString(code));
+                dispatchStatusEventAsync(IFlytekEventType.INITRECOG_FAILED, Integer.toString(code));
             }
         }
     };
@@ -173,13 +175,12 @@ public class IFlytekContext extends FREContext{
         byte []buf = null;
         String grammar = "";
         try {
-            Log.d(TAG, "尝试读取文件！");
-            Log.d(TAG, "file = " + file);
+            Log.d(TAG, "尝试读取文件！file = " + file);
             InputStream in = this.getActivity().getAssets().open(file);
             len  = in.available();
             buf = new byte[len];
             in.read(buf, 0, len);
-            grammar = EncodingUtils.getString(buf, "UTF-8");
+            grammar = EncodingUtils.getString(buf, code);
             in.close();
         } catch (Exception e) {
             Log.d(TAG, "readFile Error ：" + e.getMessage() );
@@ -259,10 +260,13 @@ class initGrammar implements FREFunction {
             context.initGrammar(object.getAsString());
         } catch (FRETypeMismatchException e) {
             e.printStackTrace();
+            Log.d(TAG,e.getMessage());
         } catch (FREInvalidObjectException e) {
             e.printStackTrace();
+            Log.d(TAG,e.getMessage());
         } catch (FREWrongThreadException e) {
             e.printStackTrace();
+            Log.d(TAG,e.getMessage());
         }
         return null;
     }
