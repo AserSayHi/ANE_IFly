@@ -34,7 +34,13 @@ public class IFlytekContext extends FREContext{
     //初始化识别控件
     void initmRecognizer() {
         Log.d(TAG, "initRecognizer!");
-        Context context = this.getActivity().getApplicationContext();
+        //Context context = this.getActivity().getApplicationContext();
+        Context context = this.getActivity().getBaseContext();
+        if(context == null){
+            Log.d(TAG, "context 初始化失败！");
+        }else{
+            Log.d(TAG, "context 初始化成功!");
+        }
         mRecognizer = new SpeechRecognizer(context, mInitListener);
     }
 
@@ -44,14 +50,12 @@ public class IFlytekContext extends FREContext{
         Log.d(TAG, file);
         mLocalGrammar = readFile(file, "utf-8");
         String grammarContent = new String( mLocalGrammar );
-        Log.d(TAG, "语法内容 grammarContent ：" + grammarContent);
+        //Log.d(TAG, "语法内容 grammarContent ：" + grammarContent);
 
         //语法构建参数
         mRecognizer.setParameter(SpeechRecognizer.GRAMMAR_ENCODEING, "utf-8");
         mRecognizer.setParameter("local_scn", "call");
         mRecognizer.setParameter(SpeechConstant.ENGINE_TYPE, "local");
-        //本地语法构建
-        mRecognizer.setParameter(SpeechRecognizer.GRAMMAR_ID, "call");
 
         //语法构建
         int ret = mRecognizer.buildGrammar("abnf", grammarContent, grammarListener);
@@ -87,6 +91,8 @@ public class IFlytekContext extends FREContext{
         public void onInit(ISpeechModule iSpeechModule, int code) {
             if (code == ErrorCode.SUCCESS) {
                 Log.d(TAG, "mRecognizer initialized!");
+            }else{
+                Log.d(TAG, "mRecognizer 初始化失败，错误码："+Integer.toString(code));
             }
         }
     };
@@ -184,6 +190,7 @@ public class IFlytekContext extends FREContext{
 
 }
 
+//开始识别
 class startRecog implements FREFunction {
 
     public static final String TAG = "startRecog";
@@ -198,6 +205,7 @@ class startRecog implements FREFunction {
     }
 }
 
+//停止识别，等待返回结果
 class stopRecog implements FREFunction {
 
     public static final String TAG = "stopRecog";
@@ -210,6 +218,7 @@ class stopRecog implements FREFunction {
     }
 }
 
+//取消识别
 class  cancleRecog implements FREFunction {
 
     public static final String TAG = "cancle";
@@ -222,6 +231,7 @@ class  cancleRecog implements FREFunction {
     }
 }
 
+//初始化识别控件
 class initRecog implements FREFunction {
 
     public static final String TAG = "initRecog";
@@ -235,6 +245,7 @@ class initRecog implements FREFunction {
     }
 }
 
+//语法构建
 class initGrammar implements FREFunction {
 
     public static final String TAG = "initGrammar";
@@ -257,6 +268,7 @@ class initGrammar implements FREFunction {
     }
 }
 
+//更新词典
 class lexcion implements FREFunction{
 
     public static final String TAG = "lexcion";
