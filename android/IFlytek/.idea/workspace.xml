@@ -67,40 +67,7 @@
     <favorites_list name="IFlytek" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="IFlytek.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytek.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="39" selection-start="212" selection-end="212" vertical-scroll-proportion="0.0" vertical-offset="163" max-vertical-offset="646">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IFlytekContext.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="83" column="54" selection-start="2715" selection-end="2715" vertical-scroll-proportion="0.21532091" vertical-offset="1074" max-vertical-offset="5111">
-              <folding>
-                <element signature="e#2788#3304#0" expanded="true" />
-                <element signature="e#3297#3298#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IFlytekEventType.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekEventType.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="18" selection-start="193" selection-end="193" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -529,8 +496,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="54" y="-8" width="1320" height="784" extended-state="1" />
-    <editor active="true" />
+    <frame x="54" y="-8" width="1320" height="784" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -549,7 +516,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27020603" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27020603" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -859,21 +826,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytek.java">
+    <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="39" selection-start="212" selection-end="212" vertical-scroll-proportion="0.0" vertical-offset="163" max-vertical-offset="646">
+        <state line="64" column="0" selection-start="2060" selection-end="2060" vertical-scroll-proportion="-2.10559" vertical-offset="1872" max-vertical-offset="5111">
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#2788#3304#0" expanded="true" />
+            <element signature="e#3297#3298#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
+    <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytek.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="54" selection-start="2715" selection-end="2715" vertical-scroll-proportion="0.21532091" vertical-offset="1074" max-vertical-offset="5111">
+        <state line="9" column="39" selection-start="212" selection-end="212" vertical-scroll-proportion="0.016563147" vertical-offset="163" max-vertical-offset="646">
           <folding>
-            <element signature="e#2788#3304#0" expanded="true" />
-            <element signature="e#3297#3298#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
