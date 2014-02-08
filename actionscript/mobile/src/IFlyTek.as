@@ -22,7 +22,7 @@ package
 				context = ExtensionContext.createExtensionContext(EXTENSION_ID, APPID);
 				if(!context)
 				{
-					trace("ERROR - Extension context is null. ");
+					throw new Error("ERROR - Extension context is null. ");
 				}else
 				{
 					context.addEventListener(StatusEvent.STATUS, onStatus);
@@ -35,12 +35,24 @@ package
 		{
 			switch(e.code)
 			{
-				case IFlytekEventType.INITRECOG_SUCCESS:
-					if(instance.initListener!=null)
-						instance.initListener();
+				case IFlytekEventCode.INITRECOG_SUCCESS:
+					_instance.initRecogGrammer();
 					break;
-				case IFlytekEventType.INITRECOG_FAILED:
-					trace("recognizer 初始化失败，错误码： " + e.level);
+				case IFlytekEventCode.INITRECOG_FAILED:
+					throw new Error("recognizer 初始化失败，错误码： " + e.level);
+					break;
+				case IFlytekEventCode.INITRECOG_GRAMMER_SUCCESS:
+					_instance.updateLexcion();
+					break;
+				case IFlytekEventCode.INITRECOG_GRAMMER_FAILED:
+					throw new Error("recognizer 语法构建失败，错误码： " + e.level);
+					break;
+				case IFlytekEventCode.RECOG_UPDATE_LEXCION_SUCCESS:
+					if(_instance.initRecogCallback != null)
+						_instance.initRecogCallback();
+					break;
+				case IFlytekEventCode.RECOG_UPDATE_LEXCION_FAILED:
+					throw new Error("recognizer 词典更新失败，错误码： " + e.level);
 					break;
 			}
 		}
@@ -49,20 +61,36 @@ package
 		private var synth:Synthesizer;
 		
 		/**
-		 * 获取语音识别控件
+		 * 获取语音识别控件，同时构建语法，语法构建完成后调用onCompleted方法
+		 * @param file			语法文件路径
+		 * @param onCompleted	回调函数
 		 * @return 
 		 */		
-		public function initRecognizer(initListener:Function):Recognizer
+		public function initRecognizer(file:String, key:String, onCompleted:Function=null):Recognizer
 		{
 			if(!recog)
 			{
 				recog = new Recognizer();
-				this.initListener = initListener;
+				this.grammerFile = file;
+				this.initRecogCallback = onCompleted;
 				recog.initRecog();
 			}
 			return recog;
 		}
-		private var initListener:Function;
+		private var initRecogCallback:Function;
+		private var grammerFile:String;
+		private var grammerKey:String;
+		/**
+		 * 语法构建
+		 */		
+		private function initRecogGrammer():void
+		{
+			recog.initGrammar( grammerFile );
+		}
+		private function updateLexcion():void
+		{
+			recog.updateLexcion(grammerFile, grammerKey);
+		}
 		
 		/**
 		 * 获取语音合成控件
