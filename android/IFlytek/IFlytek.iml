@@ -16,7 +16,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="FlashRuntimeExtensions" level="application" />
-    <orderEntry type="library" name="SpeechApi" level="application" />
+    <orderEntry type="library" name="SpeechApi" level="project" />
   </component>
 </module>
 

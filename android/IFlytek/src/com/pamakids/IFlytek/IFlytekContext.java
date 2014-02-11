@@ -1,7 +1,6 @@
 package com.pamakids.IFlytek;
 
 import android.content.Context;
-import android.content.res.AssetManager;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
@@ -34,8 +33,8 @@ public class IFlytekContext extends FREContext{
     //初始化识别控件
     void initmRecognizer() {
         Log.d(TAG, "initRecognizer!");
-        //Context context = this.getActivity().getApplicationContext();
-        Context context = this.getActivity().getBaseContext();
+        Context context = this.getActivity().getApplicationContext();
+        //Context context = this.getActivity().getBaseContext();
         if(context == null){
             Log.d(TAG, "context 初始化失败！");
         }else{
@@ -52,27 +51,53 @@ public class IFlytekContext extends FREContext{
         String grammarContent = new String( mLocalGrammar );
         Log.d(TAG, "语法内容 grammarContent ：" + grammarContent);
 
-        //语法构建参数
+        //语法构建
         mRecognizer.setParameter(SpeechRecognizer.GRAMMAR_ENCODEING, "utf-8");
         mRecognizer.setParameter("local_scn", "call");
         mRecognizer.setParameter(SpeechConstant.ENGINE_TYPE, "local");
-
-        //语法构建
         int ret = mRecognizer.buildGrammar("abnf", grammarContent, grammarListener);
-        if(ret != ErrorCode.SUCCESS)
-        Log.d(TAG, "Error：语法构建失败！ret = " + ret);
+        if(ret != ErrorCode.SUCCESS){
+            Log.d(TAG, "Error：语法构建失败！ret = " + ret);
+        }
     }
 
     //更新词典
     void lexicon(String title,String words){
         String[] arr = words.split("_");
         String content = "";
-        for(String s:arr)
-        {
+        for(String s:arr){
             content += (s + "\n");
         }
+        Log.d(TAG, "更新词典： title = " +title);
+        Log.d(TAG, "更新词典： content = " + content);
         //更新词典
-        mRecognizer.updateLexicon(title, content, lexiconListener);
+        mRecognizer.setParameter(SpeechConstant.ENGINE_TYPE, "local");
+        mRecognizer.setParameter(SpeechRecognizer.GRAMMAR_LIST, "call");
+        int code = mRecognizer.updateLexicon(title, content, lexiconListener);
+        if(code != 0){
+            Log.d(TAG, "词典更新失败，错误码： " + code);
+        }
+    }
+
+    void startRecog() {
+        Log.d(TAG, "startRecog方法执行到了！");
+        mRecognizer.setParameter(SpeechConstant.ENGINE_TYPE, "local");
+        mRecognizer.setParameter(SpeechRecognizer.GRAMMAR_LIST, "call");
+        mRecognizer.setParameter(SpeechConstant.PARAMS, "local_grammar=call,mixed_threshold=40");
+        int recode = mRecognizer.startListening( mRecogListener );
+        if(recode != ErrorCode.SUCCESS){
+            Log.d(TAG, "语法识别失败！错误码： " + recode);
+        }
+    }
+
+    void stopRecog() {
+        mRecognizer.stopListening(mRecogListener);
+        Log.d(TAG, "stopRecog!");
+    }
+
+    void cancleRecog() {
+        mRecognizer.cancel(mRecogListener);
+        Log.d(TAG, "cancleRecog！");
     }
 
     private GrammarListener grammarListener = new GrammarListener.Stub() {
@@ -80,7 +105,9 @@ public class IFlytekContext extends FREContext{
         public void onBuildFinish(String grammarId, int errorCode) throws RemoteException {
             if(errorCode == ErrorCode.SUCCESS){
                 Log.d(TAG, "语法构建成功！" + grammarId);
+                dispatchStatusEventAsync(IFlytekRecogEventType.INITRECOG_GRAMMER_SUCCESS, "");
             }else{
+                dispatchStatusEventAsync(IFlytekRecogEventType.INITRECOG_GRAMMER_FAILED, Integer.toString(errorCode));
                 Log.d(TAG, "语法构建失败，错误码：" + errorCode);
             }
         }
@@ -91,10 +118,10 @@ public class IFlytekContext extends FREContext{
         public void onInit(ISpeechModule iSpeechModule, int code) {
             if (code == ErrorCode.SUCCESS) {
                 Log.d(TAG, "mRecognizer initialized!");
-                dispatchStatusEventAsync(IFlytekEventType.INITRECOG_SUCCESS, "");
+                dispatchStatusEventAsync(IFlytekRecogEventType.INITRECOG_SUCCESS, "");
             }else{
                 Log.d(TAG, "mRecognizer 初始化失败，错误码："+Integer.toString(code));
-                dispatchStatusEventAsync(IFlytekEventType.INITRECOG_FAILED, Integer.toString(code));
+                dispatchStatusEventAsync(IFlytekRecogEventType.INITRECOG_FAILED, Integer.toString(code));
             }
         }
     };
@@ -102,10 +129,13 @@ public class IFlytekContext extends FREContext{
     private LexiconListener lexiconListener = new LexiconListener.Stub() {
         @Override
         public void onLexiconUpdated(String arg0, int arg1) throws RemoteException {
-            if(ErrorCode.SUCCESS == arg1)
+            if(ErrorCode.SUCCESS == arg1){
                 Log.d(TAG, "词典更新成功");
-            else
+                dispatchStatusEventAsync(IFlytekRecogEventType.UPDATE_LEXCION_SUCCESS, "");
+            }else{
                 Log.d(TAG, "词典更新失败！错误码：" + arg1);
+                dispatchStatusEventAsync(IFlytekRecogEventType.UPDATE_LEXCION_FAILED, Integer.toString( arg1 ) );
+            }
         }
     };
 
@@ -114,34 +144,37 @@ public class IFlytekContext extends FREContext{
         @Override
         public void onVolumeChanged(int i) throws RemoteException {
             Log.d(TAG, "onVolumeChanged！ " + Integer.toString(i));
+            dispatchStatusEventAsync(IFlytekRecogEventType.VOLUME_CHANGED, Integer.toString(i));
         }
 
         @Override
         public void onBeginOfSpeech() throws RemoteException {
             Log.d(TAG, "Begin of Speech!");
+            dispatchStatusEventAsync(IFlytekRecogEventType.RECOG_BEGIN, "");
         }
 
         @Override
         public void onEndOfSpeech() throws RemoteException {
             Log.d(TAG, "End of Speech!");
+            dispatchStatusEventAsync(IFlytekRecogEventType.RECOG_END, "");
         }
 
         @Override
         public void onResult(RecognizerResult result, boolean b) throws RemoteException{
-
             if(result != null) {
                 String text = result.getResultString();
                 Log.d(TAG, "recognizer result" + text);
+                dispatchStatusEventAsync(IFlytekRecogEventType.RECOG_RESULT, result.getResultString());
             } else {
                 Log.d(TAG, "recognizer result : null");
+                dispatchStatusEventAsync(IFlytekRecogEventType.RECOG_RESULT, "");
             }
-
-            dispatchStatusEventAsync("result", result.getResultString());
         }
 
         @Override
         public void onError(int errorcode) throws RemoteException {
             Log.d(TAG, "onError Code：" + errorcode);
+            dispatchStatusEventAsync(IFlytekRecogEventType.RECOG_ERROR, Integer.toString(errorcode));
         }
 
         @Override
@@ -188,7 +221,6 @@ public class IFlytekContext extends FREContext{
         }
         return grammar;
     }
-
 }
 
 //开始识别
@@ -199,9 +231,7 @@ class startRecog implements FREFunction {
     @Override
     public FREObject call(FREContext freContext, FREObject[] freObjects) {
         IFlytekContext context = (IFlytekContext) freContext;
-        context.mRecognizer.setParameter(SpeechConstant.ENGINE_TYPE, "local");
-        context.mRecognizer.setParameter(SpeechRecognizer.GRAMMAR_LIST, "call");
-        context.mRecognizer.startListening( context.mRecogListener );
+        context.startRecog();
         return null;
     }
 }
@@ -214,7 +244,7 @@ class stopRecog implements FREFunction {
     @Override
     public FREObject call(FREContext freContext, FREObject[] freObjects) {
         IFlytekContext context = (IFlytekContext) freContext;
-        context.mRecognizer.stopListening(context.mRecogListener);
+        context.stopRecog();
         return null;
     }
 }
@@ -227,7 +257,7 @@ class  cancleRecog implements FREFunction {
     @Override
     public FREObject call(FREContext freContext, FREObject[] freObjects) {
         IFlytekContext context = (IFlytekContext) freContext;
-        context.mRecognizer.cancel(context.mRecogListener);
+        context.cancleRecog();
         return null;
     }
 }
@@ -280,9 +310,19 @@ class lexcion implements FREFunction{
     @Override
     public FREObject call(FREContext freContext, FREObject[] freObjects) {
         IFlytekContext context = (IFlytekContext) freContext;
-        FREObject title = freObjects[0];
-        FREObject words = freObjects[1];
-        context.lexicon(title.toString(), words.toString());
+        String title = null;
+        String words = null;
+        try {
+            title = freObjects[0].getAsString();
+            words = freObjects[1].getAsString();
+            context.lexicon(title, words);
+        } catch (FRETypeMismatchException e) {
+            e.printStackTrace();
+        } catch (FREInvalidObjectException e) {
+            e.printStackTrace();
+        } catch (FREWrongThreadException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }

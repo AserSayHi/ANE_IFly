@@ -2,6 +2,9 @@ package
 {
 	import flash.events.StatusEvent;
 	import flash.external.ExtensionContext;
+	
+	import event.IFlytekRecogEvent;
+	import event.IFlytekSynthEvent;
 
 	public class IFlyTek
 	{
@@ -22,7 +25,7 @@ package
 				context = ExtensionContext.createExtensionContext(EXTENSION_ID, APPID);
 				if(!context)
 				{
-					throw new Error("ERROR - Extension context is null. ");
+					throw new Error("ERROR - Extension context is null.");
 				}else
 				{
 					context.addEventListener(StatusEvent.STATUS, onStatus);
@@ -35,61 +38,63 @@ package
 		{
 			switch(e.code)
 			{
-				case IFlytekEventCode.INITRECOG_SUCCESS:
-					_instance.initRecogGrammer();
+				case IFlytekRecogEvent.INITIALIZE_SUCCESS:
+					dispatchRecogEvent( IFlytekRecogEvent.INITIALIZE_SUCCESS );
 					break;
-				case IFlytekEventCode.INITRECOG_FAILED:
-					throw new Error("recognizer 初始化失败，错误码： " + e.level);
+				case IFlytekRecogEvent.INITIALIZE_FAILED:
+					dispatchRecogEvent( IFlytekRecogEvent.INITIALIZE_FAILED, e.level );
 					break;
-				case IFlytekEventCode.INITRECOG_GRAMMER_SUCCESS:
-					_instance.updateLexcion();
+				case IFlytekRecogEvent.INITGRAMMER_SUCCESS:
+					dispatchRecogEvent( IFlytekRecogEvent.INITGRAMMER_SUCCESS );
 					break;
-				case IFlytekEventCode.INITRECOG_GRAMMER_FAILED:
-					throw new Error("recognizer 语法构建失败，错误码： " + e.level);
+				case IFlytekRecogEvent.INITGRAMMER_FAILED:
+					dispatchRecogEvent( IFlytekRecogEvent.INITGRAMMER_FAILED, e.level );
 					break;
-				case IFlytekEventCode.RECOG_UPDATE_LEXCION_SUCCESS:
-					if(_instance.initRecogCallback != null)
-						_instance.initRecogCallback();
+				case IFlytekRecogEvent.UPDATE_LEXCION_SUCCESS:
+					dispatchRecogEvent( IFlytekRecogEvent.UPDATE_LEXCION_SUCCESS );
 					break;
-				case IFlytekEventCode.RECOG_UPDATE_LEXCION_FAILED:
-					throw new Error("recognizer 词典更新失败，错误码： " + e.level);
+				case IFlytekRecogEvent.UPDATE_LEXCION_FAILED:
+					dispatchRecogEvent( IFlytekRecogEvent.UPDATE_LEXCION_FAILED, e.level );
+					break;
+				case IFlytekRecogEvent.RECOG_BEGIN:
+					dispatchRecogEvent( IFlytekRecogEvent.RECOG_BEGIN );
+					break;
+				case IFlytekRecogEvent.RECOG_END:
+					dispatchRecogEvent( IFlytekRecogEvent.RECOG_END );
+					break;
+				case IFlytekRecogEvent.RECOG_RESULT:
+					dispatchRecogEvent( IFlytekRecogEvent.RECOG_RESULT, e.level );
+					break;
+				case IFlytekRecogEvent.RECOG_ERROR:
+					dispatchRecogEvent( IFlytekRecogEvent.RECOG_ERROR, e.level );
+					break;
+				case IFlytekRecogEvent.VOLUME_CHANGED:
+					dispatchRecogEvent( IFlytekRecogEvent.VOLUME_CHANGED, e.level );
 					break;
 			}
+		}
+		
+		private static function dispatchRecogEvent(type:String, message:String=null):void
+		{
+			_instance.recog.dispatchEvent( new IFlytekRecogEvent( type, message ) );
+		}
+		private static function dispatchSynthEvent(type:String, message:String=null):void
+		{
+			_instance.synth.dispatchEvent( new IFlytekSynthEvent( type, message ) );
 		}
 		
 		private var recog:Recognizer;
 		private var synth:Synthesizer;
 		
 		/**
-		 * 获取语音识别控件，同时构建语法，语法构建完成后调用onCompleted方法
-		 * @param file			语法文件路径
-		 * @param onCompleted	回调函数
+		 * 获取语音识别控件
 		 * @return 
 		 */		
-		public function initRecognizer(file:String, key:String, onCompleted:Function=null):Recognizer
+		public function initRecognizer():Recognizer
 		{
 			if(!recog)
-			{
 				recog = new Recognizer();
-				this.grammerFile = file;
-				this.initRecogCallback = onCompleted;
-				recog.initRecog();
-			}
 			return recog;
-		}
-		private var initRecogCallback:Function;
-		private var grammerFile:String;
-		private var grammerKey:String;
-		/**
-		 * 语法构建
-		 */		
-		private function initRecogGrammer():void
-		{
-			recog.initGrammar( grammerFile );
-		}
-		private function updateLexcion():void
-		{
-			recog.updateLexcion(grammerFile, grammerKey);
 		}
 		
 		/**
@@ -99,9 +104,7 @@ package
 		public function initSynthesizer(initListener:Function):Synthesizer
 		{
 			if( synth )
-			{
 				synth = new Synthesizer();
-			}
 			return synth;
 		}
 		

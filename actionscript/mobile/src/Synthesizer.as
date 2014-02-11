@@ -1,8 +1,9 @@
 package
 {
+	import flash.events.EventDispatcher;
 	import flash.external.ExtensionContext;
 
-	public class Synthesizer
+	public class Synthesizer extends EventDispatcher
 	{
 		private var extension:ExtensionContext;
 		
