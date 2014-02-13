@@ -6,6 +6,10 @@ package
 	import event.IFlytekRecogEvent;
 	import event.IFlytekSynthEvent;
 
+	/**
+	 * v1
+	 * @author kc2ong
+	 */	
 	public class IFlyTek
 	{
 		
