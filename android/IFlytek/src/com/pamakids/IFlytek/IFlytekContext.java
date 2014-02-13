@@ -34,27 +34,38 @@ public class IFlytekContext extends FREContext{
     void initmRecognizer() {
         Log.d(TAG, "initRecognizer!");
         Context context = this.getActivity().getApplicationContext();
-        //Context context = this.getActivity().getBaseContext();
         if(context == null){
             Log.d(TAG, "context 初始化失败！");
         }else{
             Log.d(TAG, "context 初始化成功!");
         }
         mRecognizer = new SpeechRecognizer(context, mInitListener);
+        setParams();
+    }
+
+
+    private void setParams(){
+        Log.d(TAG, "setParams");
+        mRecognizer.setParameter(SpeechConstant.ENGINE_TYPE, "local");
+        mRecognizer.setParameter(SpeechRecognizer.GRAMMAR_ENCODEING, "utf-8");
+        mRecognizer.setParameter(SpeechRecognizer.GRAMMAR_LIST, "call");
+        mRecognizer.setParameter(SpeechConstant.LANGUAGE, "en_us");
+        mRecognizer.setParameter(SpeechConstant.SAMPLE_RATE, "16000");
+        mRecognizer.setParameter(SpeechConstant.PARAMS, "local_grammar=call,mixed_threshold=40");
+
     }
 
     //语法构建
     void initGrammar(String file) {
         //缓存语法文件
-        Log.d(TAG, file);
         mLocalGrammar = readFile(file, "utf-8");
         String grammarContent = new String( mLocalGrammar );
         Log.d(TAG, "语法内容 grammarContent ：" + grammarContent);
 
         //语法构建
-        mRecognizer.setParameter(SpeechRecognizer.GRAMMAR_ENCODEING, "utf-8");
-        mRecognizer.setParameter("local_scn", "call");
-        mRecognizer.setParameter(SpeechConstant.ENGINE_TYPE, "local");
+        //mRecognizer.setParameter(SpeechRecognizer.GRAMMAR_ENCODEING, "utf-8");
+        //mRecognizer.setParameter("local_scn", "call");
+        //mRecognizer.setParameter(SpeechConstant.ENGINE_TYPE, "local");
         int ret = mRecognizer.buildGrammar("abnf", grammarContent, grammarListener);
         if(ret != ErrorCode.SUCCESS){
             Log.d(TAG, "Error：语法构建失败！ret = " + ret);
@@ -70,20 +81,13 @@ public class IFlytekContext extends FREContext{
         }
         Log.d(TAG, "更新词典： title = " +title);
         Log.d(TAG, "更新词典： content = " + content);
-        //更新词典
-        mRecognizer.setParameter(SpeechConstant.ENGINE_TYPE, "local");
-        mRecognizer.setParameter(SpeechRecognizer.GRAMMAR_LIST, "call");
         int code = mRecognizer.updateLexicon(title, content, lexiconListener);
-        if(code != 0){
+        if(code != ErrorCode.SUCCESS){
             Log.d(TAG, "词典更新失败，错误码： " + code);
         }
     }
 
     void startRecog() {
-        Log.d(TAG, "startRecog方法执行到了！");
-        mRecognizer.setParameter(SpeechConstant.ENGINE_TYPE, "local");
-        mRecognizer.setParameter(SpeechRecognizer.GRAMMAR_LIST, "call");
-        mRecognizer.setParameter(SpeechConstant.PARAMS, "local_grammar=call,mixed_threshold=40");
         int recode = mRecognizer.startListening( mRecogListener );
         if(recode != ErrorCode.SUCCESS){
             Log.d(TAG, "语法识别失败！错误码： " + recode);
@@ -104,7 +108,7 @@ public class IFlytekContext extends FREContext{
         @Override
         public void onBuildFinish(String grammarId, int errorCode) throws RemoteException {
             if(errorCode == ErrorCode.SUCCESS){
-                Log.d(TAG, "语法构建成功！" + grammarId);
+                Log.d(TAG, "语法构建成功！语法ID： " + grammarId);
                 dispatchStatusEventAsync(IFlytekRecogEventType.INITRECOG_GRAMMER_SUCCESS, "");
             }else{
                 dispatchStatusEventAsync(IFlytekRecogEventType.INITRECOG_GRAMMER_FAILED, Integer.toString(errorCode));
@@ -139,7 +143,7 @@ public class IFlytekContext extends FREContext{
         }
     };
 
-    public RecognizerListener mRecogListener = new RecognizerListener() {
+    public RecognizerListener mRecogListener = new RecognizerListener.Stub() {
 
         @Override
         public void onVolumeChanged(int i) throws RemoteException {
@@ -175,11 +179,6 @@ public class IFlytekContext extends FREContext{
         public void onError(int errorcode) throws RemoteException {
             Log.d(TAG, "onError Code：" + errorcode);
             dispatchStatusEventAsync(IFlytekRecogEventType.RECOG_ERROR, Integer.toString(errorcode));
-        }
-
-        @Override
-        public IBinder asBinder() {
-            return null;
         }
     };
     @Override
