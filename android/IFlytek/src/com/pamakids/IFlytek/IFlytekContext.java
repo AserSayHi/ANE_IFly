@@ -1,9 +1,10 @@
 package com.pamakids.IFlytek;
 
 import android.content.Context;
-import android.os.IBinder;
+import android.content.pm.PackageInfo;
 import android.os.RemoteException;
 import android.util.Log;
+import android.widget.Toast;
 import com.adobe.fre.*;
 import com.iflytek.speech.SpeechRecognizer;
 import com.iflytek.speech.ErrorCode;
@@ -18,6 +19,7 @@ import org.apache.http.util.EncodingUtils;
 
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -63,9 +65,6 @@ public class IFlytekContext extends FREContext{
         Log.d(TAG, "语法内容 grammarContent ：" + grammarContent);
 
         //语法构建
-        //mRecognizer.setParameter(SpeechRecognizer.GRAMMAR_ENCODEING, "utf-8");
-        //mRecognizer.setParameter("local_scn", "call");
-        //mRecognizer.setParameter(SpeechConstant.ENGINE_TYPE, "local");
         int ret = mRecognizer.buildGrammar("abnf", grammarContent, grammarListener);
         if(ret != ErrorCode.SUCCESS){
             Log.d(TAG, "Error：语法构建失败！ret = " + ret);
@@ -195,6 +194,8 @@ public class IFlytekContext extends FREContext{
         functions.put( startRecog.TAG, new startRecog() );      //开始识别
         functions.put( stopRecog.TAG, new stopRecog() );        //识别结束
         functions.put( cancleRecog.TAG, new cancleRecog() );    //取消识别
+        functions.put( checkServiceInstall.TAG, new checkServiceInstall() );
+        functions.put( serviceInstall.TAG, new serviceInstall() );
         return functions;
     }
 
@@ -219,6 +220,29 @@ public class IFlytekContext extends FREContext{
             e.printStackTrace();
         }
         return grammar;
+    }
+
+    FREObject checkServiceInstall() throws FREWrongThreadException {
+        String packageName = "com.iflytek.speechcloud";
+        List<PackageInfo> packages = this.getActivity().getPackageManager().getInstalledPackages(0);
+        for (PackageInfo packageInfo : packages) {
+            if (packageInfo.packageName.equals(packageName)) {
+                return FREObject.newObject(true);
+            }
+        }
+        return FREObject.newObject(false);
+    }
+
+    void installService(String assetsApk) {
+        // 直接下载方式
+//		ApkInstaller.openDownloadWeb(context, url);
+        // 本地安装方式
+        Context context = this.getActivity().getApplicationContext();
+        if(!ApkInstaller.installFromAssets(context, assetsApk)){
+            dispatchStatusEventAsync(IFlytekRecogEventType.INSTALL_SERVICE_FAILED, "");
+        }else{
+            dispatchStatusEventAsync(IFlytekRecogEventType.INSTALL_SERVICE_SUCCESS, "");
+        }
     }
 }
 
@@ -309,12 +333,45 @@ class lexcion implements FREFunction{
     @Override
     public FREObject call(FREContext freContext, FREObject[] freObjects) {
         IFlytekContext context = (IFlytekContext) freContext;
-        String title = null;
-        String words = null;
         try {
-            title = freObjects[0].getAsString();
-            words = freObjects[1].getAsString();
+            String title = freObjects[0].getAsString();
+            String words = freObjects[1].getAsString();
             context.lexicon(title, words);
+        } catch (FRETypeMismatchException e) {
+            e.printStackTrace();
+        } catch (FREInvalidObjectException e) {
+            e.printStackTrace();
+        } catch (FREWrongThreadException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+}
+
+class checkServiceInstall implements FREFunction{
+
+    public static final String TAG = "check_service_install";
+    @Override
+    public FREObject call(FREContext freContext, FREObject[] freObjects) {
+        IFlytekContext context = (IFlytekContext) freContext;
+        try {
+            return context.checkServiceInstall();
+        } catch (FREWrongThreadException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+}
+
+class serviceInstall implements FREFunction{
+
+    public static final String TAG = "service_install";
+    @Override
+    public FREObject call(FREContext freContext, FREObject[] freObjects) {
+        IFlytekContext context = (IFlytekContext) freContext;
+        try {
+            String assetsApk = freObjects[0].getAsString();
+            context.installService(assetsApk);
         } catch (FRETypeMismatchException e) {
             e.printStackTrace();
         } catch (FREInvalidObjectException e) {

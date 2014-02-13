@@ -19,6 +19,9 @@ package event
 		public static const RECOG_ERROR:String = "recog_error";
 		public static const VOLUME_CHANGED:String = "volume_changed";
 		
+		public static const INSTALL_SERVICE_SUCCESS:String = "install_service_success";
+		public static const INSTALL_SERVICE_FAILED:String = "install_service_failed";
+		
 		public function IFlytekRecogEvent(type:String, message:String=null, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
 			super(type, bubbles, cancelable);

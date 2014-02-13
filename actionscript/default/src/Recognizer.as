@@ -9,13 +9,6 @@ package
 	 */	
 	public class Recognizer extends EventDispatcher
 	{
-		private const KEY_INITRECOG:String = "initRecog";		//初始化识别控件
-		private const KEY_INITGRAMMAR:String = "initGrammar";	//构建语法
-		private const KEY_LEXCION:String = "lexcion";			//更新词典
-		private const KEY_START_RECOG:String = "startRecog";	//开始识别
-		private const KEY_STOP_RECOG:String = "stopRecog";		//结束识别
-		private const KEY_CANCLE_RECOG:String = "cancle";		//取消识别
-		
 		internal var extension:ExtensionContext;
 		
 		public function Recognizer()
@@ -38,7 +31,7 @@ package
 				if(!words)
 					throw new Error("无有效关键词");
 				key = "<" + key + ">";
-				extension.call( KEY_LEXCION, key, words);
+				extension.call( KeyCode.KEY_LEXCION, key, words);
 			}
 		}
 		/**
@@ -48,7 +41,7 @@ package
 		public function initGrammar(urlFile:String):void
 		{	
 			if(extension)
-				extension.call( KEY_INITGRAMMAR, urlFile );
+				extension.call( KeyCode.KEY_INITGRAMMAR, urlFile );
 		}
 		/**
 		 * 开始识别
@@ -56,7 +49,7 @@ package
 		public function startRecog():void
 		{
 			if(extension)
-				extension.call( KEY_START_RECOG );
+				extension.call( KeyCode.KEY_START_RECOG );
 		}
 		/**
 		 * 停止识别，等待结果返回
@@ -64,7 +57,7 @@ package
 		public function stopRecog():void
 		{
 			if(extension)
-				extension.call( KEY_STOP_RECOG );
+				extension.call( KeyCode.KEY_STOP_RECOG );
 		}
 		/**
 		 * 取消识别
@@ -72,7 +65,7 @@ package
 		public function cancle():void
 		{
 			if(extension)
-				extension.call( KEY_CANCLE_RECOG );
+				extension.call( KeyCode.KEY_CANCLE_RECOG );
 		}
 		/**
 		 * 控件初始化，初始化完成后派发  IFlytekRecogEvent.INITRECOG_SUCCESS 事件
@@ -80,7 +73,7 @@ package
 		public function initialize():void
 		{
 			if(extension)
-				extension.call( KEY_INITRECOG );
+				extension.call( KeyCode.KEY_INITRECOG );
 		}
 	}
 }

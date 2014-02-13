@@ -1,16 +1,18 @@
 package
 {
+	import flash.events.EventDispatcher;
 	import flash.events.StatusEvent;
 	import flash.external.ExtensionContext;
 	
 	import event.IFlytekRecogEvent;
+	import event.IFlytekServiceEvent;
 	import event.IFlytekSynthEvent;
 
 	/**
 	 * v1
 	 * @author kc2ong
 	 */	
-	public class IFlyTek
+	public class IFlyTek extends EventDispatcher
 	{
 		
 		private static var _instance:IFlyTek;
@@ -75,6 +77,12 @@ package
 				case IFlytekRecogEvent.VOLUME_CHANGED:
 					dispatchRecogEvent( IFlytekRecogEvent.VOLUME_CHANGED, e.level );
 					break;
+				case IFlytekServiceEvent.INSTALL_SERVICE_FAILED:
+					_instance.dispatchEvent(new IFlytekServiceEvent( IFlytekServiceEvent.INSTALL_SERVICE_FAILED ));
+					break;
+				case IFlytekServiceEvent.INSTALL_SERVICE_SUCCESS:
+					_instance.dispatchEvent(new IFlytekServiceEvent( IFlytekServiceEvent.INSTALL_SERVICE_SUCCESS ));
+					break;
 			}
 		}
 		
@@ -112,5 +120,23 @@ package
 			return synth;
 		}
 		
+		/**
+		 * 检测设备是否已安装 讯飞语音+ 
+		 */		
+		public function checkServiceInstall():Boolean
+		{
+			if(context)
+				return context.call( KeyCode.KEY_CHECK_SERVICE_INSTALL ) as Boolean;
+			return false;
+		}
+		
+		/**
+		 * 安装 讯飞语音+
+		 */		
+		public function installService(apkUrl:String):void
+		{
+			if(context)
+				context.call( KeyCode.KEY_SERVICE_INSTALL, apkUrl );
+		}
 	}
 }

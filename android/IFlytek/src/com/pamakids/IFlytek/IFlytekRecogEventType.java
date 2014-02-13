@@ -20,4 +20,7 @@ public class IFlytekRecogEventType {
     public static final String RECOG_ERROR = "recog_error";
     public static final String VOLUME_CHANGED = "volume_changed";
 
+    public static final String INSTALL_SERVICE_FAILED = "install_service_failed";
+    public static final String INSTALL_SERVICE_SUCCESS = "install_service_success";
+
 }
