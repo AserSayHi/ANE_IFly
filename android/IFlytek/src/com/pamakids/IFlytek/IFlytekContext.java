@@ -240,8 +240,6 @@ public class IFlytekContext extends FREContext{
         Context context = this.getActivity().getApplicationContext();
         if(!ApkInstaller.installFromAssets(context, assetsApk)){
             dispatchStatusEventAsync(IFlytekRecogEventType.INSTALL_SERVICE_FAILED, "");
-        }else{
-            dispatchStatusEventAsync(IFlytekRecogEventType.INSTALL_SERVICE_SUCCESS, "");
         }
     }
 }
