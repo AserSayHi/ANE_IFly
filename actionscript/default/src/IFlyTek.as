@@ -69,7 +69,13 @@ package
 					dispatchRecogEvent( IFlytekRecogEvent.RECOG_END );
 					break;
 				case IFlytekRecogEvent.RECOG_RESULT:
-					dispatchRecogEvent( IFlytekRecogEvent.RECOG_RESULT, e.level );
+					var str:String = e.level;
+					var xml:XML = new XML(str);
+					if(xml.rawtext)
+						str = xml.rawtext.toString();
+					else
+						str = null;
+					dispatchRecogEvent( IFlytekRecogEvent.RECOG_RESULT, str );
 					break;
 				case IFlytekRecogEvent.RECOG_ERROR:
 					dispatchRecogEvent( IFlytekRecogEvent.RECOG_ERROR, e.level );
@@ -80,9 +86,9 @@ package
 				case IFlytekServiceEvent.INSTALL_SERVICE_FAILED:
 					_instance.dispatchEvent(new IFlytekServiceEvent( IFlytekServiceEvent.INSTALL_SERVICE_FAILED ));
 					break;
-				case IFlytekServiceEvent.INSTALL_SERVICE_SUCCESS:
+				/*case IFlytekServiceEvent.INSTALL_SERVICE_SUCCESS:
 					_instance.dispatchEvent(new IFlytekServiceEvent( IFlytekServiceEvent.INSTALL_SERVICE_SUCCESS ));
-					break;
+					break;*/
 			}
 		}
 		
@@ -94,6 +100,21 @@ package
 		{
 			_instance.synth.dispatchEvent( new IFlytekSynthEvent( type, message ) );
 		}
+		
+		public static function dispose():void
+		{
+			if(_instance)
+				_instance.dispose();
+			_instance=null;
+			
+			if(context)
+			{
+				if(context.hasEventListener(StatusEvent.STATUS))
+					context.removeEventListener(StatusEvent.STATUS, onStatus);
+				context.dispose();
+			}
+		}
+		
 		
 		private var recog:Recognizer;
 		private var synth:Synthesizer;
@@ -136,7 +157,26 @@ package
 		public function installService(apkUrl:String):void
 		{
 			if(context)
+			{
+				if(called)
+					return;
 				context.call( KeyCode.KEY_SERVICE_INSTALL, apkUrl );
+				called = true;
+			}
+		}
+		private var called:Boolean = false;
+		private function dispose():void
+		{
+			if(recog)
+			{
+				recog.dispose();
+				recog = null;
+			}
+			if(synth)
+			{
+				synth.dispose();
+				synth = null;
+			}
 		}
 	}
 }

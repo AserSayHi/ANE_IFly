@@ -11,5 +11,10 @@ package
 		{
 			extension = IFlyTek.context;
 		}
+		
+		public function dispose():void
+		{
+			extension = null;
+		}
 	}
 }

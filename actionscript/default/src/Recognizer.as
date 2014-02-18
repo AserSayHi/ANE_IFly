@@ -75,5 +75,10 @@ package
 			if(extension)
 				extension.call( KeyCode.KEY_INITRECOG );
 		}
+		
+		public function dispose():void
+		{
+			extension = null;
+		}
 	}
 }

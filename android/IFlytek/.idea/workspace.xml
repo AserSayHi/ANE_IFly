@@ -71,10 +71,8 @@
       <file leaf-file-name="IFlytek.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytek.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="30" selection-start="307" selection-end="307" vertical-scroll-proportion="0.0" vertical-offset="125" max-vertical-offset="608">
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+            <state line="14" column="30" selection-start="307" selection-end="307" vertical-scroll-proportion="0.0" vertical-offset="266" max-vertical-offset="646">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -82,28 +80,25 @@
       <file leaf-file-name="IFlytekRecogEventType.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekRecogEventType.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="6" selection-start="983" selection-end="983" vertical-scroll-proportion="0.0" vertical-offset="125" max-vertical-offset="608">
+            <state line="23" column="6" selection-start="983" selection-end="983" vertical-scroll-proportion="0.0" vertical-offset="437" max-vertical-offset="608">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IFlytekContext.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="IFlytekContext.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="241" column="75" selection-start="8843" selection-end="8865" vertical-scroll-proportion="0.0" vertical-offset="4133" max-vertical-offset="7201">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#6755#6776#0" expanded="true" />
-              </folding>
+            <state line="188" column="52" selection-start="6698" selection-end="6698" vertical-scroll-proportion="0.7867495" vertical-offset="2641" max-vertical-offset="6821">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ApkInstaller.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ApkInstaller.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/ApkInstaller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="42" selection-start="1283" selection-end="1283" vertical-scroll-proportion="0.4531915" vertical-offset="623" max-vertical-offset="2337">
+            <state line="26" column="36" selection-start="539" selection-end="539" vertical-scroll-proportion="0.0" vertical-offset="338" max-vertical-offset="2337">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -129,8 +124,8 @@
         <option value="$PROJECT_DIR$/../../../../android/Test/src/com/example/Test/MyActivity.java" />
         <option value="$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekEventType.java" />
         <option value="$PROJECT_DIR$/src/com/pamakids/IFlytek/util/ApkInstaller.java" />
-        <option value="$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java" />
         <option value="$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekRecogEventType.java" />
+        <option value="$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java" />
       </list>
     </option>
   </component>
@@ -166,8 +161,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -224,6 +219,28 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="IFlytek" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IFlytek" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IFlytek" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IFlytek" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IFlytekContext.java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -567,7 +584,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="54" y="-8" width="1320" height="784" extended-state="0" />
+    <frame x="54" y="-8" width="1320" height="784" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -625,9 +642,7 @@
     <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytek.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="30" selection-start="307" selection-end="307" vertical-scroll-proportion="0.0" vertical-offset="266" max-vertical-offset="646">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -641,19 +656,14 @@
     <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="78" column="30" selection-start="2542" selection-end="2542" vertical-scroll-proportion="0.0" vertical-offset="1482" max-vertical-offset="5700">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6755#6776#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytek.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="45" selection-start="353" selection-end="353" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -667,19 +677,14 @@
     <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="133" column="41" selection-start="4796" selection-end="4796" vertical-scroll-proportion="0.0" vertical-offset="2527" max-vertical-offset="5510">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6755#6776#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytek.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="45" selection-start="353" selection-end="353" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -693,137 +698,98 @@
     <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="213" column="80" selection-start="7593" selection-end="7593" vertical-scroll-proportion="0.0" vertical-offset="4047" max-vertical-offset="5681">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6755#6776#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytek.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="30" selection-start="307" selection-end="307" vertical-scroll-proportion="0.0" vertical-offset="171" max-vertical-offset="646">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytek.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="13" selection-start="374" selection-end="374" vertical-scroll-proportion="0.0" vertical-offset="342" max-vertical-offset="608">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="81" column="0" selection-start="2510" selection-end="2510" vertical-scroll-proportion="0.0" vertical-offset="1539" max-vertical-offset="5605">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6755#6776#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytek.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="0" selection-start="213" selection-end="213" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="56" column="23" selection-start="1766" selection-end="1766" vertical-scroll-proportion="0.0" vertical-offset="1064" max-vertical-offset="5339">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6755#6776#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="40" column="38" selection-start="1228" selection-end="1228" vertical-scroll-proportion="0.0" vertical-offset="760" max-vertical-offset="5263">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6755#6776#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="53" column="33" selection-start="1714" selection-end="1714" vertical-scroll-proportion="0.0" vertical-offset="1007" max-vertical-offset="5225">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6755#6776#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="64" column="22" selection-start="2127" selection-end="2127" vertical-scroll-proportion="0.0" vertical-offset="1216" max-vertical-offset="4617">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6755#6776#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="60" column="40" selection-start="1926" selection-end="1934" vertical-scroll-proportion="0.0" vertical-offset="1140" max-vertical-offset="4617">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6755#6776#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="174" column="28" selection-start="5624" selection-end="5624" vertical-scroll-proportion="0.0" vertical-offset="3146" max-vertical-offset="4807">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6755#6776#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="186" column="22" selection-start="6184" selection-end="6184" vertical-scroll-proportion="0.0" vertical-offset="456" max-vertical-offset="4636">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6755#6776#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="173" column="26" selection-start="5595" selection-end="5595" vertical-scroll-proportion="0.0" vertical-offset="3287" max-vertical-offset="4636">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6755#6776#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="118" column="0" selection-start="3953" selection-end="3953" vertical-scroll-proportion="0.0" vertical-offset="2242" max-vertical-offset="4256">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6755#6776#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -835,10 +801,7 @@
     <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="173" column="81" selection-start="5568" selection-end="5577" vertical-scroll-proportion="0.0" vertical-offset="2822" max-vertical-offset="4617">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6755#6776#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -850,10 +813,7 @@
     <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="33" column="32" selection-start="984" selection-end="984" vertical-scroll-proportion="0.0" vertical-offset="380" max-vertical-offset="4199">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6755#6776#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -865,10 +825,7 @@
     <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="56" selection-start="620" selection-end="620" vertical-scroll-proportion="0.0" vertical-offset="456" max-vertical-offset="646">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6755#6776#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -880,10 +837,7 @@
     <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="56" selection-start="620" selection-end="620" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6755#6776#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -895,10 +849,7 @@
     <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="56" selection-start="620" selection-end="620" vertical-scroll-proportion="0.0" vertical-offset="456" max-vertical-offset="646">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6755#6776#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -910,10 +861,7 @@
     <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="56" selection-start="620" selection-end="620" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6755#6776#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -925,10 +873,7 @@
     <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="56" selection-start="620" selection-end="620" vertical-scroll-proportion="0.0" vertical-offset="456" max-vertical-offset="646">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6755#6776#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -940,10 +885,7 @@
     <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="51" selection-start="601" selection-end="615" vertical-scroll-proportion="0.0" vertical-offset="456" max-vertical-offset="646">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6755#6776#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -995,19 +937,7 @@
     <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytek.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="30" selection-start="307" selection-end="307" vertical-scroll-proportion="0.0" vertical-offset="125" max-vertical-offset="608">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="241" column="75" selection-start="8843" selection-end="8865" vertical-scroll-proportion="0.0" vertical-offset="4133" max-vertical-offset="7201">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6755#6776#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1020,10 +950,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/ApkInstaller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="42" selection-start="1283" selection-end="1283" vertical-scroll-proportion="0.4531915" vertical-offset="623" max-vertical-offset="2337">
+        <state line="26" column="36" selection-start="539" selection-end="539" vertical-scroll-proportion="0.0" vertical-offset="338" max-vertical-offset="2337">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pamakids/IFlytek/IFlytekContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="188" column="52" selection-start="6698" selection-end="6698" vertical-scroll-proportion="0.7867495" vertical-offset="2641" max-vertical-offset="6821">
+          <folding />
         </state>
       </provider>
     </entry>

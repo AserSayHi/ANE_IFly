@@ -101,6 +101,21 @@ package
 			_instance.synth.dispatchEvent( new IFlytekSynthEvent( type, message ) );
 		}
 		
+		public static function dispose():void
+		{
+			if(_instance)
+				_instance.dispose();
+			_instance=null;
+			
+			if(context)
+			{
+				if(context.hasEventListener(StatusEvent.STATUS))
+					context.removeEventListener(StatusEvent.STATUS, onStatus);
+				context.dispose();
+			}
+		}
+		
+		
 		private var recog:Recognizer;
 		private var synth:Synthesizer;
 		
@@ -150,5 +165,18 @@ package
 			}
 		}
 		private var called:Boolean = false;
+		private function dispose():void
+		{
+			if(recog)
+			{
+				recog.dispose();
+				recog = null;
+			}
+			if(synth)
+			{
+				synth.dispose();
+				synth = null;
+			}
+		}
 	}
 }
