@@ -1,9 +1,10 @@
-package com.pamakids.IFlytek;
+package com.pamakids.IFlytek.utils;
 
 /**
+ * 事件状态编码
  * Created by kc2ong on 14-2-7.
  */
-public class IFlytekRecogEventType {
+public class EventCode {
 
     public static final String INITRECOG_SUCCESS = "initRecog_success";
     public static final String INITRECOG_FAILED = "initRecog_failed";
@@ -22,5 +23,8 @@ public class IFlytekRecogEventType {
 
     public static final String INSTALL_SERVICE_FAILED = "install_service_failed";
     //public static final String INSTALL_SERVICE_SUCCESS = "install_service_success";
+
+    public static final String RECORD_BEGIN = "record_begin";
+    public static final String RECORD_END = "record_end";
 
 }
