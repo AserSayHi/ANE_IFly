@@ -1,4 +1,4 @@
-package utils
+package com.pamakids.iflytek.utils
 {
 	/**
 	 * 交互编码

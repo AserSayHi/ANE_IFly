@@ -1,4 +1,4 @@
-package event
+package com.pamakids.iflytek.event
 {
 	import flash.events.Event;
 	

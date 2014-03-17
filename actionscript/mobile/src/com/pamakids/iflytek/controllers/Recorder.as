@@ -1,13 +1,13 @@
-package controllers
+package com.pamakids.iflytek.controllers
 {
 	import flash.events.EventDispatcher;
 	import flash.events.StatusEvent;
 	import flash.external.ExtensionContext;
 	
-	import event.IFlytekRecordEvent;
+	import com.pamakids.iflytek.event.IFlytekRecordEvent;
 	
-	import utils.Contexts;
-	import utils.KeyCode;
+	import com.pamakids.iflytek.utils.Contexts;
+	import com.pamakids.iflytek.utils.KeyCode;
 	
 	public class Recorder extends EventDispatcher
 	{

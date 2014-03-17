@@ -1,13 +1,13 @@
-package controllers
+package com.pamakids.iflytek.controllers
 {
 	import flash.events.EventDispatcher;
 	import flash.events.StatusEvent;
 	import flash.external.ExtensionContext;
 	
-	import event.IFlytekRecogEvent;
+	import com.pamakids.iflytek.event.IFlytekRecogEvent;
 	
-	import utils.Contexts;
-	import utils.KeyCode;
+	import com.pamakids.iflytek.utils.Contexts;
+	import com.pamakids.iflytek.utils.KeyCode;
 
 	/**
 	 * 识别控件
@@ -15,7 +15,6 @@ package controllers
 	 */	
 	public class Recognizer extends EventDispatcher
 	{
-		
 		private var context:ExtensionContext;
 		
 		public function Recognizer()

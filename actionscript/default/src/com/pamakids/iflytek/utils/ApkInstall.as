@@ -1,10 +1,10 @@
-package utils
+package com.pamakids.iflytek.utils
 {
 	import flash.events.EventDispatcher;
 	import flash.events.StatusEvent;
 	import flash.external.ExtensionContext;
 	
-	import event.IFlytekServiceEvent;
+	import com.pamakids.iflytek.event.IFlytekServiceEvent;
 	
 	public class ApkInstall extends EventDispatcher
 	{

@@ -22,14 +22,20 @@ class IFlytek implements FREExtension {
 
     @Override
     public FREContext createContext(String s) {
-        if(s == KeyCode.CONTEXT_RECOGNIZER)
+        Log.d(TAG, "s = "+s);
+        if(s.equals(KeyCode.CONTEXT_RECOGNIZER)){
+            Log.d(TAG, "KeyCode.CONTEXT_RECOGNIZER = "+KeyCode.CONTEXT_RECOGNIZER);
             return new RecognizerContext();
-        else if(s == KeyCode.CONTEXT_RECORDER)
+        }else if(s.equals(KeyCode.CONTEXT_RECORDER)){
+            Log.d(TAG, "KeyCode.CONTEXT_RECORDER = "+KeyCode.CONTEXT_RECORDER);
             return new RecorderContext();
-        else if(s == KeyCode.CONTEXT_APKINSTALL)
+        }else if(s.equals( KeyCode.CONTEXT_APKINSTALL)){
+            Log.d(TAG, "KeyCode.CONTEXT_APKINSTALL = "+KeyCode.CONTEXT_APKINSTALL);
             return new ApkInstallContext();
-        else
+        }else{
+            Log.d(TAG, "FREContext = null");
             return null;
+        }
     }
 
     @Override

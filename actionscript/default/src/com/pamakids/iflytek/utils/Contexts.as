@@ -1,4 +1,4 @@
-package utils
+package com.pamakids.iflytek.utils
 {
 	import flash.external.ExtensionContext;
 	import flash.utils.Dictionary;

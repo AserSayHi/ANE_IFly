@@ -2,6 +2,7 @@ package com.pamakids.IFlytek.contexts;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
+import android.util.Log;
 import com.adobe.fre.*;
 import com.pamakids.IFlytek.utils.ApkInstaller;
 import com.pamakids.IFlytek.utils.EventCode;
@@ -15,13 +16,18 @@ import java.util.Map;
  * Created by kc2ong on 14-2-24.
  */
 public class ApkInstallContext extends FREContext {
+
+    public static final String TAG = "ApkInstall";
+
     @Override
     public Map<String, FREFunction> getFunctions() {
         Map<String, FREFunction> functions = new HashMap<String, FREFunction>();
         functions.put( KeyCode.KEY_CHECK_SERVICE_INSTALL, new CheckServiceInstall());
         functions.put( KeyCode.KEY_SERVICE_INSTALL, new ServiceInstall());
-        return null;
+        return functions;
     }
+
+
 
     @Override
     public void dispose() {}
@@ -41,9 +47,11 @@ public class ApkInstallContext extends FREContext {
         List<PackageInfo> packages = this.getActivity().getPackageManager().getInstalledPackages(0);
         for (PackageInfo packageInfo : packages) {
             if (packageInfo.packageName.equals(packageName)) {
+                Log.d(TAG, "已安装");
                 return FREObject.newObject(true);
             }
         }
+        Log.d(TAG, "未安装");
         return FREObject.newObject(false);
     }
 }

@@ -26,7 +26,7 @@ public class RecorderContext extends FREContext {
         functions.put(KeyCode.KEY_START_RECORD, new StartRecord());
         functions.put(KeyCode.KEY_STOP_RECORD, new StopRecord());
         functions.put(KeyCode.KEY_AUDIO_PLAY, new AudioPlayer());
-        return null;
+        return functions;
     }
 
     private MediaRecorder mRecorder;
