@@ -15,7 +15,7 @@ package com.pamakids.iflytek.utils
 		{
 			if(!_instance)
 			{
-				_instance = new ApkInstall(new MyClass());
+				_instance = new ApkInstall();
 			}
 			return _instance;
 		}
@@ -29,11 +29,8 @@ package com.pamakids.iflytek.utils
 		}
 		
 		private var context:ExtensionContext;
-		public function ApkInstall(myClass:MyClass)
+		public function ApkInstall()
 		{
-			if(!myClass)
-				throw new Error("ApkInstall初始化失败，请使用静态方法获取单例对象!");
-			
 			context = Contexts.instance().getContext( KeyCode.CONTEXT_APKINSTALL );
 			context.addEventListener(StatusEvent.STATUS, onStatus);
 		}
@@ -85,4 +82,3 @@ package com.pamakids.iflytek.utils
 	}
 }
 
-class MyClass{}

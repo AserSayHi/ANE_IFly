@@ -1,13 +1,12 @@
 package com.pamakids.iflytek.controllers
 {
+	import com.pamakids.iflytek.event.IFlytekRecogEvent;
+	import com.pamakids.iflytek.utils.Contexts;
+	import com.pamakids.iflytek.utils.KeyCode;
+	
 	import flash.events.EventDispatcher;
 	import flash.events.StatusEvent;
 	import flash.external.ExtensionContext;
-	
-	import com.pamakids.iflytek.event.IFlytekRecogEvent;
-	
-	import com.pamakids.iflytek.utils.Contexts;
-	import com.pamakids.iflytek.utils.KeyCode;
 
 	/**
 	 * 识别控件
@@ -19,8 +18,12 @@ package com.pamakids.iflytek.controllers
 		
 		public function Recognizer()
 		{
-			context = Contexts.instance().getContext( KeyCode.CONTEXT_RECOGNIZER);
-			context.addEventListener(StatusEvent.STATUS, onStatus);
+		}
+		
+		private var initilalized:Boolean = false;
+		public function checkInitialized():Boolean
+		{
+			return initilalized;
 		}
 		
 		/**
@@ -28,37 +31,29 @@ package com.pamakids.iflytek.controllers
 		 */		
 		public function initialize():void
 		{
+			if(initilalized)
+				return;
+			listeners = new Vector.<Function>();
+			context = Contexts.instance().getContext( KeyCode.CONTEXT_RECOGNIZER);
 			if(context)
+			{
+				context.addEventListener(StatusEvent.STATUS, onStatus);
 				context.call( KeyCode.KEY_INITRECOG );
+			}
 		}
 		
 		protected function onStatus(e:StatusEvent):void
 		{
+			var event:IFlytekRecogEvent;
 			switch(e.code)
 			{
 				case IFlytekRecogEvent.INITIALIZE_SUCCESS:
-					dispatchEvent( new IFlytekRecogEvent( IFlytekRecogEvent.INITIALIZE_SUCCESS ) );
-					break;
-				case IFlytekRecogEvent.INITIALIZE_FAILED:
-					dispatchEvent( new IFlytekRecogEvent( IFlytekRecogEvent.INITIALIZE_FAILED, e.level ));
-					break;
+					initilalized = true;
 				case IFlytekRecogEvent.INITGRAMMER_SUCCESS:
-					dispatchEvent( new IFlytekRecogEvent( IFlytekRecogEvent.INITGRAMMER_SUCCESS ));
-					break;
-				case IFlytekRecogEvent.INITGRAMMER_FAILED:
-					dispatchEvent( new IFlytekRecogEvent( IFlytekRecogEvent.INITGRAMMER_FAILED, e.level ));
-					break;
 				case IFlytekRecogEvent.UPDATE_LEXCION_SUCCESS:
-					dispatchEvent( new IFlytekRecogEvent( IFlytekRecogEvent.UPDATE_LEXCION_SUCCESS ));
-					break;
-				case IFlytekRecogEvent.UPDATE_LEXCION_FAILED:
-					dispatchEvent( new IFlytekRecogEvent( IFlytekRecogEvent.UPDATE_LEXCION_FAILED, e.level ));
-					break;
 				case IFlytekRecogEvent.RECOG_BEGIN:
-					dispatchEvent( new IFlytekRecogEvent( IFlytekRecogEvent.RECOG_BEGIN ));
-					break;
 				case IFlytekRecogEvent.RECOG_END:
-					dispatchEvent( new IFlytekRecogEvent( IFlytekRecogEvent.RECOG_END ));
+					event = new IFlytekRecogEvent( e.code );
 					break;
 				case IFlytekRecogEvent.RECOG_RESULT:
 					var str:String = e.level;
@@ -67,14 +62,19 @@ package com.pamakids.iflytek.controllers
 						str = xml.rawtext.toString();
 					else
 						str = null;
-					dispatchEvent( new IFlytekRecogEvent( IFlytekRecogEvent.RECOG_RESULT, str ));
+					event = new IFlytekRecogEvent( e.code, str );
 					break;
+				case IFlytekRecogEvent.INITIALIZE_FAILED:
+				case IFlytekRecogEvent.INITGRAMMER_FAILED:
+				case IFlytekRecogEvent.UPDATE_LEXCION_FAILED:
 				case IFlytekRecogEvent.RECOG_ERROR:
-					dispatchEvent( new IFlytekRecogEvent( IFlytekRecogEvent.RECOG_ERROR, e.level ));
-					break;
 				case IFlytekRecogEvent.VOLUME_CHANGED:
-					dispatchEvent( new IFlytekRecogEvent( IFlytekRecogEvent.VOLUME_CHANGED, e.level ));
+					event = new IFlytekRecogEvent( e.code, e.level );
 					break;
+			}
+			for each(var func:Function in listeners)
+			{
+				func(event);
 			}
 		}
 		
@@ -82,7 +82,6 @@ package com.pamakids.iflytek.controllers
 		 * 词典更新
 		 * @param key 语法文件中定义的槽名，槽名前后不需要加<>符号
 		 * @param words 多个关键词以"_"连接
-		 * @param cover 是否覆盖原词库
 		 */		
 		public function updateLexcion(key:String, words:String):void
 		{
@@ -121,6 +120,7 @@ package com.pamakids.iflytek.controllers
 			if(context)
 				context.call( KeyCode.KEY_STOP_RECOG );
 		}
+		
 		/**
 		 * 取消识别
 		 */		
@@ -132,6 +132,8 @@ package com.pamakids.iflytek.controllers
 		
 		public function dispose():void
 		{
+			initilalized = false;
+			listeners = null;
 			if(context)
 			{
 				context.removeEventListener(StatusEvent.STATUS, onStatus);
@@ -144,6 +146,20 @@ package com.pamakids.iflytek.controllers
 		{
 			if(context)
 				context.call( KeyCode.KEY_RECOG_AUDIO, fileName);
+		}
+		
+		private var listeners:Vector.<Function>;
+		public function addListener( listener:Function ):void
+		{
+			listeners.push( listener );
+		}
+		public function delListener( listener:Function ):void
+		{
+			var i:int = listeners.indexOf( listener );
+			if(i != -1)
+			{
+				listeners.splice(i, 1);
+			}
 		}
 	}
 }

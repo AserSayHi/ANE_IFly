@@ -10,14 +10,12 @@ package com.pamakids.iflytek.utils
 		public static function instance():Contexts
 		{
 			if(!_instance)
-				_instance = new Contexts(new MyClass());
+				_instance = new Contexts();
 			return _instance;
 		}
 		
-		public function Contexts(myClass:MyClass)
+		public function Contexts()
 		{
-			if(!myClass)
-				throw new Error("初始化失败，请使用公开的类静态方法获取单例对象!");
 			dic = new Dictionary();
 		}
 		
@@ -56,5 +54,3 @@ package com.pamakids.iflytek.utils
 		}
 	}
 }
-
-class MyClass{}
