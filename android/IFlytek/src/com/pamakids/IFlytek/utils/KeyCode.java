@@ -41,6 +41,7 @@ public class KeyCode {
 
     //录音功能=============================================================================
 
+    public static final String KEY_INIT_RECORD = "initRecord";
     /** 开始录音 */
     public static final String KEY_START_RECORD = "startRecord";
     /** 取消录音 */

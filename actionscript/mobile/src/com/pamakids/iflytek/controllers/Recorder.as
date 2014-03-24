@@ -1,13 +1,12 @@
 package com.pamakids.iflytek.controllers
 {
+	import com.pamakids.iflytek.event.IFlytekRecordEvent;
+	import com.pamakids.iflytek.utils.Contexts;
+	import com.pamakids.iflytek.utils.KeyCode;
+	
 	import flash.events.EventDispatcher;
 	import flash.events.StatusEvent;
 	import flash.external.ExtensionContext;
-	
-	import com.pamakids.iflytek.event.IFlytekRecordEvent;
-	
-	import com.pamakids.iflytek.utils.Contexts;
-	import com.pamakids.iflytek.utils.KeyCode;
 	
 	public class Recorder extends EventDispatcher
 	{
@@ -33,6 +32,14 @@ package com.pamakids.iflytek.controllers
 			}
 		}
 		
+		 /**
+		  * 初始化
+		  */		
+		public function initialize():void
+		{
+			if(context)
+				context.call(KeyCode.KEY_INIT_RECORD);
+		}
 		/**
 		 * @param fileName	录音存储文件名（不包含后缀，默认为amr格式存储）
 		 */		
@@ -46,6 +53,12 @@ package com.pamakids.iflytek.controllers
 		{
 			if(context)
 				context.call( KeyCode.KEY_STOP_RECORD );
+		}
+		
+		public function play(fileName:String):void
+		{
+			if(context)
+				context.call( KeyCode.KEY_AUDIO_PLAY, fileName );
 		}
 		
 		public function dispose():void

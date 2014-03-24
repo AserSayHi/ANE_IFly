@@ -33,7 +33,6 @@ package com.pamakids.iflytek.controllers
 		{
 			if(initilalized)
 				return;
-			listeners = new Vector.<Function>();
 			context = Contexts.instance().getContext( KeyCode.CONTEXT_RECOGNIZER);
 			if(context)
 			{
@@ -72,10 +71,7 @@ package com.pamakids.iflytek.controllers
 					event = new IFlytekRecogEvent( e.code, e.level );
 					break;
 			}
-			for each(var func:Function in listeners)
-			{
-				func(event);
-			}
+			dispatchEvent( event );
 		}
 		
 		/**
@@ -133,7 +129,6 @@ package com.pamakids.iflytek.controllers
 		public function dispose():void
 		{
 			initilalized = false;
-			listeners = null;
 			if(context)
 			{
 				context.removeEventListener(StatusEvent.STATUS, onStatus);
@@ -146,20 +141,6 @@ package com.pamakids.iflytek.controllers
 		{
 			if(context)
 				context.call( KeyCode.KEY_RECOG_AUDIO, fileName);
-		}
-		
-		private var listeners:Vector.<Function>;
-		public function addListener( listener:Function ):void
-		{
-			listeners.push( listener );
-		}
-		public function delListener( listener:Function ):void
-		{
-			var i:int = listeners.indexOf( listener );
-			if(i != -1)
-			{
-				listeners.splice(i, 1);
-			}
 		}
 	}
 }

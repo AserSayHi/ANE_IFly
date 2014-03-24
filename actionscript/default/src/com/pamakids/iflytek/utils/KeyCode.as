@@ -40,10 +40,14 @@ package com.pamakids.iflytek.utils
 		
 		//录音功能=============================================================================
 		
+		/** 初始化录音组件 */		
+		public static const KEY_INIT_RECORD:String = "initRecord";	//开始录音
 		/** 开始录音 */		
 		public static const KEY_START_RECORD:String = "startRecord";	//开始录音
 		/** 取消录音 */
 		public static const KEY_STOP_RECORD:String = "stopRecord";		//录音结束
+		/**	声音播放 */		
+		public static const KEY_AUDIO_PLAY:String = "playAudio";		
 		
 		//========================================================================
 		
