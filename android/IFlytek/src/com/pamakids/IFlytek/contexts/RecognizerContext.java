@@ -40,11 +40,6 @@ public class RecognizerContext extends FREContext {
     void initmRecognizer() {
         Log.d(TAG, "initRecognizer!");
         Context context = this.getActivity().getApplicationContext();
-        /*if(context == null){
-            Log.d(TAG, "context 初始化失败！");
-        }else{
-            Log.d(TAG, "context 初始化成功!");
-        }*/
         mRecognizer = new SpeechRecognizer(context, mInitListener);
         setParams();
     }

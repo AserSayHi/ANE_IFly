@@ -4,7 +4,6 @@ package com.pamakids.iflytek.controllers
 	import com.pamakids.iflytek.utils.Contexts;
 	import com.pamakids.iflytek.utils.KeyCode;
 	
-	import flash.events.EventDispatcher;
 	import flash.events.StatusEvent;
 	import flash.external.ExtensionContext;
 
@@ -12,7 +11,7 @@ package com.pamakids.iflytek.controllers
 	 * 识别控件
 	 * @author Administrator
 	 */	
-	public class Recognizer extends EventDispatcher
+	public class Recognizer
 	{
 		private var context:ExtensionContext;
 		
@@ -71,7 +70,13 @@ package com.pamakids.iflytek.controllers
 					event = new IFlytekRecogEvent( e.code, e.level );
 					break;
 			}
-			dispatchEvent( event );
+			if(dic)
+			{
+				for each(var func:Function in dic)
+				{
+					func(event);
+				}
+			}
 		}
 		
 		/**
@@ -141,6 +146,27 @@ package com.pamakids.iflytek.controllers
 		{
 			if(context)
 				context.call( KeyCode.KEY_RECOG_AUDIO, fileName);
+		}
+		
+		private var dic:Vector.<Function>;
+		public function addEventListener(handler:Function):void
+		{
+			if(!dic)
+				dic = new Vector.<Function>();
+			if(dic.indexOf( handler ) == -1)
+				dic.push( handler );
+		}
+		public function removeEventListener(handler:Function):void
+		{
+			if(!dic)
+				return;
+			var i:int = dic.indexOf( handler );
+			if(i != -1)
+			{
+				dic.splice(i,1);
+				if(dic.length == 0)
+					dic = null;
+			}
 		}
 	}
 }
