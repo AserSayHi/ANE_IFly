@@ -70,7 +70,7 @@ package com.pamakids.iflytek.utils
 			}
 		}
 		
-		private function dispose():void
+		public function dispose():void
 		{
 			if(context)
 			{

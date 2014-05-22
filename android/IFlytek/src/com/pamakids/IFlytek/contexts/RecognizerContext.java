@@ -83,6 +83,8 @@ public class RecognizerContext extends FREContext {
     }
 
     void startRecog() {
+        mRecognizer.setParameter(SpeechConstant.VAD_BOS, "4000");
+        mRecognizer.setParameter(SpeechConstant.VAD_EOS, "700");
         int recode = mRecognizer.startListening( mRecogListener );
         if(recode != ErrorCode.SUCCESS){
             Log.d(TAG, "语法识别失败！错误码： " + recode);
